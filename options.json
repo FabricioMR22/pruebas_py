@@ -1,0 +1,48 @@
+[{
+  "_id": "1",
+  "name": "Ganador "
+},
+{
+  "_id": "2",
+  "name": "Resultado Final y DC"
+},
+{
+  "_id": "3",
+  "name": "1er Tiempo Ganador"
+},
+{
+  "_id": "4",
+  "name": "Total goles 1,5 1.5"
+},
+{
+  "_id": "5",
+  "name": "Resultado 2do Tiempo"
+},
+{
+  "_id": "6",
+  "name": "Total goles 2,5 2.5"
+},
+{
+  "_id": "7",
+  "name": "Total goles 3,5 3.5"
+},
+{
+  "_id": "8",
+  "name": "Rango de Goles "
+},
+{
+  "_id": "9",
+  "name": "¿Anotarán ambos equipos?"
+},
+{
+  "_id": "10",
+  "name": " Gol"
+},
+{
+  "_id": "11",
+  "name": "Primer Tiempo / Resultado Final"
+},
+{
+  "_id": "12",
+  "name": "Resultado Exacto"
+}]

@@ -1,0 +1,72 @@
+import json
+import requests
+import csv
+import pandas as pd
+
+
+def get_list_all_events():
+    api_url = "https://api.programateapuesto.pe/api/events/?date=2023-10-08"
+    list_events = []
+    page = 1
+
+    try:
+        while True:
+            page_url = f"{api_url}&page={page}"
+            response = requests.get(page_url)
+            events = response.json()
+
+            if len(events) > 0:
+                list_events.extend(events)
+                page += 1
+            else:
+                break
+
+    except Exception as e:
+        print("Error:", str(e))
+
+    list_name_events = []
+    list_cod_events = []
+    list_ide_events = []
+    for i in list_events:
+        list_name_events.append(f'{i["el"]}:{i["ev"]}')
+        list_cod_events.append(i["cod"])
+        list_ide_events.append(i["idE"])
+
+    equipos = [nombre.lower() for nombre in list_name_events]
+
+    df = pd.DataFrame(
+        {'nombre': equipos, 'codigo': list_cod_events, 'idE': list_ide_events})
+    df.to_csv('0910_equipo_cod_idE.csv', index=False)
+
+
+get_list_all_events()
+
+
+def get_all_team_names():
+    api_url = "https://api.retail-teapuesto.com/api/v4/daily-events"
+    page = 1
+    limit = 25
+    date = "2023-10-04"
+    list_events = []
+
+    while True:
+        page_url = f"{api_url}?page={page}&limit={limit}&date={date}"
+        response = requests.get(page_url)
+        data = response.json()
+
+        events = data["events"]
+
+        if len(events) > 0:
+            list_events.extend(events)
+            page += 1
+        else:
+            break
+
+    list_name_events = []
+    for evento in list_events:
+        away = evento["away"]
+        home = evento["home"]
+        list_name_events.append(away)
+        list_name_events.append(home)
+
+    return list_name_events
